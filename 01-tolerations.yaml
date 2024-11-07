@@ -3,12 +3,22 @@ kind: Pod
 metadata:
   name: nginx
 spec:
+  affinity:
+    nodeAffinity:
+      # hard ware
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: hardware
+            operator: In
+            values:
+            - gpu
   containers:
   # docker run -d --name nginx nginx
   - name: nginx
     image: nginx:stable-perl
-  nodeSelector:
-    hardware: gpu
+  # nodeSelector:
+  #   hardware: gpu
   tolerations:
   - key: "hardware"
     operator: "Equal"
