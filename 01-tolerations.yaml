@@ -7,6 +7,8 @@ spec:
   # docker run -d --name nginx nginx
   - name: nginx
     image: nginx:stable-perl
+  nodeSelector:
+    disktype: ssd
   tolerations:
   - key: "hardware"
     operator: "Equal"
